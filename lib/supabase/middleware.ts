@@ -38,8 +38,8 @@ export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Public routes that don't require auth
-  const publicRoutes = ['/login']
-  if (publicRoutes.includes(pathname)) {
+  const publicRoutes = ['/login', '/demo']
+  if (publicRoutes.includes(pathname) || pathname.startsWith('/demo')) {
     if (user) {
       // Already logged in — redirect based on role
       const { data: profile } = await supabase
